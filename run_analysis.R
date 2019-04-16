@@ -3,33 +3,36 @@
 library(dplyr)
 library(tidyr)
 library(readr)
+
 ## Read in data files
 
+## Read in activity and subject identifiers
 activity_names<-read.table("activity_labels.txt",na.strings=c("NA","",",",".."),stringsAsFactors = FALSE)
 features<-read.table("features.txt",na.strings=c("NA","",",",".."),stringsAsFactors = FALSE)
 
+## Read in Test Data
 X_test<-read.table("X_test.txt",na.strings=c("NA","",",",".."),stringsAsFactors = FALSE)
 y_test<-read.table("y_test.txt",na.strings=c("NA","",",",".."),stringsAsFactors = FALSE)
 subject_test<-read.table("subject_test.txt",na.strings=c("NA","",",",".."),stringsAsFactors = FALSE)
 
+## Read in Train Data
 X_train<-read.table("X_train.txt",na.strings=c("NA","",",",".."),stringsAsFactors = FALSE)
 y_train<-read.table("y_train.txt",na.strings=c("NA","",",",".."),stringsAsFactors = FALSE)
 subject_train<-read.table("subject_train.txt",na.strings=c("NA","",",",".."),stringsAsFactors = FALSE)
 
-#merge data into single table
+## Merge data into single table
 test<-cbind(subject_test,y_test,X_test)
 train<-cbind(subject_train,y_train,X_train)
 dataset<-rbind(test,train)
 
-
-##Rename Columns of merged data
+## Rename Columns of merged data
 names(dataset)<-c("SubjectID","Activity",features$V2)
 
-##Select only mean and std measures
+## Select only mean and std measures
 measures<-grep("-mean\\(\\)|-std\\(\\)",names(dataset))
 dataset<-dataset[c(1:2,measures)]
 
-##Format columns to be more descriptive and readable
+## Format columns to be more descriptive and readable
 dataset$Activity<-activity_names$V2[dataset$Activity]
 names(dataset)<-gsub("^t","Time ",names(dataset))
 names(dataset)<-gsub("^f","Freq ",names(dataset))
