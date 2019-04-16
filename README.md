@@ -15,7 +15,7 @@ The raw data was obtained from a Samsung Galaxy II worn on the waist of 30 volun
 
 The raw data was in the form as follows:
 
-activity_labels.txt-Labels of activities (6 X 2)-Activity Labes
+activity_labels.txt-Labels of activities (6 X 2)-Activity Labels
 
 features.txt (561 X 2)-List of variables obtained in the study
 
@@ -32,7 +32,7 @@ X_train.txt (7352 X 561)-Train Data
 Y_train.txt (7352 X 1)-Activity Indentifier
 
 ##Data Cleaning
-The data was tidied as follows:
+The data was tidied as follows in the code run_analysis.R:
 
 The data was read in and stored in data frames.
 
@@ -49,6 +49,9 @@ Variable names were then changed to be more descripive and readable.
 The data was then averaged per subject per activity to form a tidy dataset of 180 X 68 data frame.
 
 The resultant data frame has the subject identifier in the first columne, the activity tested in the second column, and all subsequent columns have the data found in the Codebook.
+
+##Please set working directory to a folder containing all files above.
+
 
 
 
